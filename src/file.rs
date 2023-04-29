@@ -26,6 +26,7 @@ pub struct File<IO: ReadWriteSeek, TP:Clone, OCC:Clone> {
     fs: Arc<FileSystem<IO, TP, OCC>>,
 }
 
+
 /// An extent containing a file's data on disk.
 ///
 /// This is created by the `extents` method on `File`, and represents
@@ -52,6 +53,9 @@ impl<IO: ReadWriteSeek, TP:Clone, OCC:Clone> File<IO, TP, OCC> {
         }
     }
 
+    pub fn offset(&self)->u32{
+        self.offset
+    }
     /// Truncate file in current position.
     ///
     /// # Errors
