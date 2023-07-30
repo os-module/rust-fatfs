@@ -578,7 +578,7 @@ impl<IO: Read + Write + Seek, TP:Clone, OCC:Clone> FileSystem<IO, TP, OCC> {
     /// # Errors
     ///
     /// `Error::Io` will be returned if the underlying storage object returned an I/O error.
-    pub fn unmount(self) -> Result<(), Error<IO::Error>> {
+    pub fn unmount(&self) -> Result<(), Error<IO::Error>> {
         self.unmount_internal()
     }
 
@@ -590,7 +590,7 @@ impl<IO: Read + Write + Seek, TP:Clone, OCC:Clone> FileSystem<IO, TP, OCC> {
 
     fn flush_fs_info(&self) -> Result<(), Error<IO::Error>> {
         let mut fs_info = self.fs_info.lock();
-        if self.fat_type == FatType::Fat32 && fs_info.dirty {
+        if (self.fat_type==FatType::Fat16||self.fat_type == FatType::Fat32) && fs_info.dirty {
             let mut disk = self.disk.lock();
             let fs_info_sector_offset = self.offset_from_sector(u32::from(self.bpb.fs_info_sector));
             disk.seek(SeekFrom::Start(fs_info_sector_offset))?;

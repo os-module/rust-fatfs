@@ -38,6 +38,13 @@ pub struct Extent {
     pub size: u32,
 }
 
+
+impl <IO: ReadWriteSeek, TP:Clone, OCC:Clone> File<IO, TP, OCC>{
+    pub fn get_fs(&self) -> Arc<FileSystem<IO, TP, OCC>> {
+        self.fs.clone()
+    }
+}
+
 impl<IO: ReadWriteSeek, TP:Clone, OCC:Clone> File<IO, TP, OCC> {
     pub(crate) fn new(
         first_cluster: Option<u32>,

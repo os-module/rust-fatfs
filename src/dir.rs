@@ -111,6 +111,13 @@ pub struct Dir<IO: ReadWriteSeek, TP:Clone, OCC:Clone> {
     fs: Arc<FileSystem<IO, TP, OCC>>,
 }
 
+
+impl <IO: ReadWriteSeek, TP:Clone, OCC:Clone> Dir<IO, TP, OCC>{
+    pub fn get_fs(&self) -> Arc<FileSystem<IO, TP, OCC>> {
+        self.fs.clone()
+    }
+}
+
 impl< IO: ReadWriteSeek, TP:Clone, OCC:Clone> Dir<IO, TP, OCC> {
     pub(crate) fn new(stream: DirRawStream<IO, TP, OCC>, fs: Arc<FileSystem<IO, TP, OCC>>) -> Self {
         Dir { stream, fs }
