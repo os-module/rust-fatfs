@@ -8,6 +8,7 @@ use core::fmt;
 use core::iter;
 use core::str;
 use alloc::sync::Arc;
+use log::trace;
 
 #[cfg(feature = "lfn")]
 use crate::dir::LfnBuffer;

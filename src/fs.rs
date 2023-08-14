@@ -8,6 +8,7 @@ use core::fmt::Debug;
 use core::marker::PhantomData;
 use core::u32;
 use alloc::sync::Arc;
+use log::{error, trace, warn};
 use spin::Mutex;
 
 use crate::boot_sector::{format_boot_sector, BiosParameterBlock, BootSector};

@@ -34,72 +34,72 @@ pub const MAX_LOG_LEVEL: LevelFilter = LevelFilter::Warn;
 ))]
 pub const MAX_LOG_LEVEL: LevelFilter = LevelFilter::Error;
 
-#[cfg(all(
-    not(feature = "log_level_trace"),
-    not(feature = "log_level_debug"),
-    not(feature = "log_level_info"),
-    not(feature = "log_level_warn"),
-    not(feature = "log_level_error"),
-))]
-pub const MAX_LOG_LEVEL: LevelFilter = LevelFilter::Off;
+// #[cfg(all(
+//     not(feature = "log_level_trace"),
+//     not(feature = "log_level_debug"),
+//     not(feature = "log_level_info"),
+//     not(feature = "log_level_warn"),
+//     not(feature = "log_level_error"),
+// ))]
+// pub const MAX_LOG_LEVEL: LevelFilter = LevelFilter::Off;
 
-#[macro_export]
-macro_rules! log {
-    (target: $target:expr, $lvl:expr, $($arg:tt)+) => ({
-        let lvl = $lvl;
-        if lvl <= $crate::log_macros::MAX_LOG_LEVEL {
-            log::log!(target: $target, lvl, $($arg)+);
-        }
-    });
-    ($lvl:expr, $($arg:tt)+) => (log!(target: log::__log_module_path!(), $lvl, $($arg)+))
-}
-
-#[macro_export]
-macro_rules! error {
-    (target: $target:expr, $($arg:tt)+) => (
-        log!(target: $target, log::Level::Error, $($arg)+);
-    );
-    ($($arg:tt)+) => (
-        log!(log::Level::Error, $($arg)+);
-    )
-}
-
-#[macro_export]
-macro_rules! warn {
-    (target: $target:expr, $($arg:tt)+) => (
-        log!(target: $target, log::Level::Warn, $($arg)+);
-    );
-    ($($arg:tt)+) => (
-        log!(log::Level::Warn, $($arg)+);
-    )
-}
-
-#[macro_export]
-macro_rules! info {
-    (target: $target:expr, $($arg:tt)+) => (
-        log!(target: $target, log::Level::Info, $($arg)+);
-    );
-    ($($arg:tt)+) => (
-        log!(log::Level::Info, $($arg)+);
-    )
-}
-
-#[macro_export]
-macro_rules! debug {
-    (target: $target:expr, $($arg:tt)+) => (
-        log!(target: $target, log::Level::Debug, $($arg)+);
-    );
-    ($($arg:tt)+) => (
-        log!(log::Level::Debug, $($arg)+);
-    )
-}
-
-#[macro_export]
-macro_rules! trace {
-    (target: $target:expr, $($arg:tt)+) => (
-        log!(target: $target, log::Level::Trace, $($arg)+);
-    );
-    ($($arg:tt)+) => (
-        log!(log::Level::Trace, $($arg)+);
-    )
-}
+// #[macro_export]
+// macro_rules! log {
+//     (target: $target:expr, $lvl:expr, $($arg:tt)+) => ({
+//         let lvl = $lvl;
+//         if lvl <= $crate::log_macros::MAX_LOG_LEVEL {
+//             log::log!(target: $target, lvl, $($arg)+);
+//         }
+//     });
+//     ($lvl:expr, $($arg:tt)+) => (log!(target: log::__log_module_path!(), $lvl, $($arg)+))
+// }
+//
+// #[macro_export]
+// macro_rules! error {
+//     (target: $target:expr, $($arg:tt)+) => (
+//         log!(target: $target, log::Level::Error, $($arg)+);
+//     );
+//     ($($arg:tt)+) => (
+//         log!(log::Level::Error, $($arg)+);
+//     )
+// }
+//
+// #[macro_export]
+// macro_rules! warn {
+//     (target: $target:expr, $($arg:tt)+) => (
+//         log!(target: $target, log::Level::Warn, $($arg)+);
+//     );
+//     ($($arg:tt)+) => (
+//         log!(log::Level::Warn, $($arg)+);
+//     )
+// }
+//
+// #[macro_export]
+// macro_rules! info {
+//     (target: $target:expr, $($arg:tt)+) => (
+//         log!(target: $target, log::Level::Info, $($arg)+);
+//     );
+//     ($($arg:tt)+) => (
+//         log!(log::Level::Info, $($arg)+);
+//     )
+// }
+//
+// #[macro_export]
+// macro_rules! debug {
+//     (target: $target:expr, $($arg:tt)+) => (
+//         log!(target: $target, log::Level::Debug, $($arg)+);
+//     );
+//     ($($arg:tt)+) => (
+//         log!(log::Level::Debug, $($arg)+);
+//     )
+// }
+//
+// #[macro_export]
+// macro_rules! trace {
+//     (target: $target:expr, $($arg:tt)+) => (
+//         log!(target: $target, log::Level::Trace, $($arg)+);
+//     );
+//     ($($arg:tt)+) => (
+//         log!(log::Level::Trace, $($arg)+);
+//     )
+// }

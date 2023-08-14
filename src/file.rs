@@ -1,6 +1,7 @@
 use core::cmp;
 use core::convert::TryFrom;
 use alloc::sync::Arc;
+use log::{error, trace, warn};
 
 use crate::dir_entry::DirEntryEditor;
 use crate::error::Error;
